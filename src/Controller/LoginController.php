@@ -21,9 +21,11 @@ class LoginController extends AbstractController
         $email = $request->request->get('email');
         $password = $request->request->get('password');
 
+        // find user in data base
         $loginService = new LoginService($emi, $encoder);
         $user = $loginService->login($email, $password);
 
+        // if user exist, create JWT refrhesh token and JWT refrhesh token
         if($user instanceof User) {
           $refresh_jwt = CreateTokenAccessFirstService::createTokenRegisterUser($user->getId(), $user->getName(), 7776000, 'refresh');  // 90 days
           $access_jwt  = CreateTokenAccessFirstService::createTokenRegisterUser($user->getId(), $user->getName(), 1500,'access');  // 20 min
