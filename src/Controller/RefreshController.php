@@ -17,8 +17,10 @@ class RefreshController extends AbstractController
     {
         $refresh_token = $request->query->get('token'); 
 
+        // valorate refresh token
         $result = CreateTokenAccessFirstService::isTokenValid($refresh_token, 'refresh');
 
+        // if refresh token is valid - create new access token
         if( $result['the_signature_is_valid'] && !$result['the_token_has_expired']){
             $new_access_token = CreateTokenAccessFirstService::createTokenRegisterUser( $result['obj']->userid,  $result['obj']->username, 1500, 'access');
             $result['new_access_token'] = $new_access_token;
