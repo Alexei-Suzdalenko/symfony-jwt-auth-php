@@ -4,6 +4,7 @@ use App\Entity\User;
 
 class CreateTokenAccessFirstService{
  
+    // create new token refresh or access
     public static function createTokenRegisterUser($userid, $username, int $seconds, string $key)
     {
       $time = time() + $seconds; 
@@ -26,7 +27,7 @@ class CreateTokenAccessFirstService{
     }
 
 
-
+    // validate if token is valid
     public static function isTokenValid($refresh_token, $key){
      
       function base64UrlEncode($text){return str_replace(['+', '/', '='],['-', '_', ''],base64_encode($text));}
