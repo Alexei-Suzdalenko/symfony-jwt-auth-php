@@ -17,8 +17,11 @@ class RegisterController extends AbstractController
     {
         $parameters = $request->request->all(); 
         $registerService = new RegisterService($encoder, $emi);
+        
+        // register new user
         $json = $registerService->register($parameters['name'], $parameters['email'], $parameters['password']);
  
+        // return user registered data
         return $this->json($json);
     }
 }
