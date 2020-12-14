@@ -16,16 +16,18 @@ class BooksController extends AbstractController
         $headers = $request->headers->get('Authorization');
         $token = substr($headers, 7);
 
+        // valorate access token
         $result = CreateTokenAccessFirstService::isTokenValid($token, 'access');
 
-
+        // if access token is valid, the controller work  
         if( !$result['the_token_has_expired'] && $result['the_signature_is_valid']){
             return $this->json([
                 'books' => 'this is work',
                 'message' => 'Welcome to your new controller!',
                 'path' => 'src/Controller/BooksController.php',
             ]);
-        } else{
+        } else {
+            // if access token don't valid, return errors   
             return $this->json($result);
         }
 
