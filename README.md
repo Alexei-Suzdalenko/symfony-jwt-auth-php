@@ -4,3 +4,14 @@
 
 https://github.com/Diseno-Desarrollo-Web-App-Cantabria
 https://github.com/Santa-Maria-de-Cayon
+
+git status
+git branch alpha   // create
+git branch --list  
+git checkout alpha   // switch
+git branch           //list 
+git checkout -b beta // create and swith
+
+git add .
+git commit -m "initinal"
+git push --set-upstream origin alpha
